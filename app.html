@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>OSCAL 2014</title>
+  <!-- Building blocks -->
+  <link rel="stylesheet" href="style/headers.css">
+  <link rel="stylesheet" href="style/drawer.css">
+  <link rel="stylesheet" href="style/lists.css">
+
+  <!-- Transitions -->
+  <link rel="stylesheet" href="transitions.css">
+
+  <!-- Util CSS: some extra tricks -->
+  <link rel="stylesheet" href="util.css">
+
+  <style>
+    #index {
+      height: 100%;
+    }
+
+    [data-position="right"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      z-index: 15;
+      z-index: 100; /* -> drawer */
+    }
+    section[role="region"][data-position="right"] {
+      position: absolute;
+    }
+    [data-position="right"].current {
+      animation: rightToCurrent 0.4s forwards;
+      -webkit-animation: rightToCurrent 0.4s forwards;
+    }
+    [data-position="right"].right {
+      animation: currentToRight 0.4s forwards;
+      -webkit-animation: currentToRight 0.4s forwards;
+    }
+    [data-position="current"].left {
+      animation: currentToLeft 0.4s forwards;
+      -webkit-animation: currentToLeft 0.4s forwards;
+    }
+    [data-position="current"].current {
+      animation: leftToCurrent 0.4s forwards;
+      -webkit-animation: leftToCurrent 0.4s forwards;
+    }
+    [data-position="back"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      opacity: 0;
+      /* z-index: 100; -> drawer */
+    }
+    [data-position="back"].fade-in {
+      z-index: 120;
+      animation: fadeIn 0.2s forwards;
+      -webkit-animation: fadeIn 0.2s forwards;
+    }
+    [data-position="back"].fade-out {
+      animation: fadeOut 0.2s forwards;
+      -webkit-animation: fadeOut 0.2s forwards;
+    }
+  </style>
+</head>
+<body>
+  <section id="index" data-position="current">
+    <section data-type="sidebar">
+      <header>
+        <h1>Menu</h1>
+      </header>
+      <nav>
+        <ul>
+          <li><a href="#" id="btn-about">About</a></li>
+          <li><a href="#" id="btn-venue">Venue</a></li>
+          <li><a href="#" id="btn-tirana">Tirana</a></li>
+          <li><a href="#" id="btn-agenda">Agenda</a></li>
+          <li><a href="#" id="btn-speakers">Speakers</a></li>
+          <li><a href="#" id="btn-supporters">Supporters</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <section id="drawer" role="region">
+      <header class="fixed">
+        <a href="#"><span class="icon icon-menu">hide sidebar</span></a>
+        <a href="#drawer"><span class="icon icon-menu">show sidebar</span></a>
+        <h1>OSCAL <em>2014</em></h1>
+      </header>
+      <article class="scrollable header">
+        <img src="images/logo.png" alt="OSCAL Logo" style="width: 80%; display: block; margin: 30px auto">
+
+        <img src="images/banana.jpg" alt="OSCAL Banner" style="width: 100%; display: block; margin: 30px auto">
+
+        <h1 style="text-align: center">3 - 4 May</h1>
+
+        <h2 style="text-align: center">University of Tirana, Freedom Building</h2>
+      </article>
+    </section>
+  </section>
+
+  <section class="skin-dark" role="region" id="about" data-position="right">
+    <header class="fixed">
+      <a id="btn-about-back" href="#"><span class="icon icon-back">back</span></a>
+      <h1>OSCAL <em>About</em></h1>
+    </header>
+
+    <article class="content scrollable header">
+      <p>OSCAL is organized by Open Labs,a non-government non-profit organization, based in Albania, that aims to support and promote initiatives which provide tools that bring knowledge closer to those more in need. In particular, these people are there to make sure OSCAL will be a big success:</p>
+
+      <div data-type="list">
+        <ul>
+          <li>
+            <aside class="pack-end">
+              <img alt="Elio Qoshi" src="images/mods/elio_qoshi.jpg">
+            </aside>
+            <a href="javascript:alert('Board Member @OpenLabs, Mozilla Representative, Student at University of Arts in Tirana. He promotes free libre open source software at day, and does graphic design at night.  He has a passion for entrepreneurship. Together with Redon, he will moderate OSCAL.')">
+              <p>Elio Qoshi</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Greta Doçi" src="images/mods/greta_doci.jpg">
+            </aside>
+            <a href="javascript:alert('Graduated in University of TIrana, Information Technology and Communication bachelor degree, she is the coordinator of WikiAcademy Albania, an Open Labs project. She is also a board member at Open Labs.')">
+              <p>Greta Doçi</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Inva Veliu" src="images/mods/inva_veliu.jpg">
+            </aside>
+            <a href="javascript:alert('Graduated in Business Informatics, she is responsible for the creation and the maintenance of the site of the conference and not only.')">
+              <p>Inva Veliu</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Redon Skikuli" src="images/mods/redon_skikuli.jpg">
+            </aside>
+            <a href="javascript:alert('A hacktivist, open knowledge/culture promoter and consultant. A Mozilla Rep, Open Labs board member, Arduino workshops host, speaker at regional and European conferences about the importance of FLOSS at every level. He is one of the OSCAL moderators.')">
+              <p>Redon Skikuli</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="skin-dark" role="region" id="venue" data-position="right">
+    <header class="fixed">
+      <a id="btn-venue-back" href="#"><span class="icon icon-back">back</span></a>
+      <h1>OSCAL <em>Venue</em></h1>
+    </header>
+
+    <article class="content scrollable header">
+      <p>Freedom Building (Salla Liria), part of the University of Tirana, is probably the best venue in Tirana we could have thought of in terms of infrastructure, capacity and location. A big thank you goes to the decision makers at the University of Tirana that agreed to host OSCAL 2014!<br>
+      Here is the map:</p>
+
+      <iframe width="100%" height="350" frameborder="0" src="http://www.openstreetmap.org/export/embed.html?bbox=19.830139875411987%2C41.3182758782417%2C19.833680391311646%2C41.3200888874195&amp;layer=mapnik"></iframe>
+    </article>
+  </section>
+
+  <section class="skin-dark" role="region" id="tirana" data-position="right">
+    <header class="fixed">
+      <a id="btn-tirana-back" href="#"><span class="icon icon-back">back</span></a>
+      <h1>OSCAL <em>Tirana</em></h1>
+    </header>
+
+    <article class="content scrollable header">
+      <img src="images/tirana.jpg" alt="Tirana" style="width: 95%; display: block; margin: 0 auto">
+      <h1>About Tirana</h1>
+      <p>Tirana is the capital and the largest city of Albania. Tirana became Albania’s capital city in 1920 and has a population of 600,000, with metro area population of 763,634. The city is host to public institutions and private universities, and is the centre of the political, economic, and cultural life of the country. More details can be found at the <a href="//en.wikipedia.org/wiki/Tirana">Wikipedia article</a>.</p>
+
+      <h1>Hostels & Hotels</h1>
+      <p>Tirana offers a wide range of hostels and hotels which makes it easy for you to choose based on your budget. Availability shouldn’t be a problem, but as always when it comes to booking and travelling, the sooner you make your arrangements, the better. Here is a small list of choices that we propose. Please know that the DOiT organizing team is not affiliated with any of the businesses below.</p>
+      <h2>Budget</h2>
+      <span>Tirana Backpackers Hostel (website: tiranahostel.com)</span><br>
+      <span>Milingona Hostel (description from hostelworld.com)</span>
+
+      <h2>Mid-range</h2>
+      <span>Hotel Firenze</span>
+
+      <h2>Pricey</h2>
+      <span>Dimplomat Hotel</span><br>
+      <span>Sky Hotel</span>
+    </article>
+  </section>
+
+  <section class="skin-dark" role="region" id="agenda" data-position="right">
+    <header class="fixed">
+      <a id="btn-agenda-back" href="#"><span class="icon icon-back">back</span></a>
+      <h1>OSCAL <em>Agenda</em></h1>
+    </header>
+
+    <article class="content scrollable header">
+      <div data-type="list">
+        <header>Day 1</header>
+        <ul>
+          <li>
+            <a href="#">
+              <p>Registration</p>
+              <p>09:00 - 09:30</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Opening talks</p>
+              <p>09:40 - 10:00</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Keynote speaker</p>
+              <p>10:00 - 10:35</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Ongoing talks from different speakers</p>
+              <p>10:40 - 15:25</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>It’s a lunch or dinner time. Get some rest!</p>
+              <p>15:30 - 16:15</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Discussion Panel</p>
+              <p>16:20 - 16:40</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Workshop Time</p>
+              <p>16:50 - 19:00</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Party Time</p>
+              <p>21:00 - 23:00</p>
+            </a>
+          </li>
+        </ul>
+
+        <header>Day 2</header>
+
+        <ul>
+          <li>
+            <a href="#">
+              <p>Morning coffee</p>
+              <p>09:00 - 09:30</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Opening talks</p>
+              <p>09:40 - 10:00</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Keynote speaker</p>
+              <p>10:00 - 10:35</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Ongoing talks from different speakers</p>
+              <p>10:40 - 15:25</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>It’s a lunch or dinner time. Get some rest!</p>
+              <p>15:30 - 16:15</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Discussion Panel</p>
+              <p>16:20 - 16:40</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Workshop Time</p>
+              <p>16:50 - 19:00</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p>Party Time</p>
+              <p>21:00 - 23:00</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="skin-dark" role="region" id="speakers" data-position="right">
+    <header class="fixed">
+      <a id="btn-speakers-back" href="#"><span class="icon icon-back">back</span></a>
+      <h1>OSCAL <em>Speakers</em></h1>
+    </header>
+
+    <article class="content scrollable header">
+      <div data-type="list">
+        <ul>
+          <li>
+            <aside class="pack-end">
+              <img alt="Erik Albers" src="images/speakers/erik_albers.jpg">
+            </aside>
+            <a href="javascript:alert('Erik is FSFE’s community manager and campaigner. He helps FSFE’s supporters and supporting members in various groups over Europe to engage for Free Software.')">
+              <p>Erik Albers</p>
+              <p>Free Software Foundation Europe (FSFE)</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Milot Shala" src="images/speakers/milot_shala.jpg">
+            </aside>
+            <a href="javascript:alert('He writes mobile applications, machine learning algorithms and Desktop applications in C++ including Poken S.A. in Switzerland, Nokia in Ulm, Germany, doo GmbH in Germany.')">
+              <p>Milot Shala</p>
+              <p>C++11 and GCC</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Giannis Konstantinidis" src="images/speakers/giannis_konstantinidis.jpg">
+            </aside>
+            <a href="javascript:alert('Free/Open Source Software Advocate – ICT Engineering Student – Mozilla Rep and Contributor, Fedora Ambassador in Greece – Loves Troubleshooting and helping others open source contributors.')">
+              <p>Giannis Konstantinidis</p>
+              <p>Fedora Ambassador</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Baki Goxhaj" src="images/speakers/baki_goxhaj.jpg">
+            </aside>
+            <a href="javascript:alert('WordPress theme developer since 2006. Ever since he has been freelancing at WPlancer.Com.Founder of OmniWeb Studio.<br>
+Produces compelling WordPress themes at Monster Themes.')">
+              <p>Baki Goxhaj</p>
+              <p>OmniWeb Studio</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Besfort Guri" src="images/speakers/besfort_guri.jpg">
+            </aside>
+            <a href="javascript:alert('Born in Prizren, based in Prishtina. Active member at FLOSSK – Free Libre Open Source Software Kosova. Member at Humanitarian OpenStreetMap Team. Open Source Hardware enthusiast and part of the WMKIT team.')">
+              <p>Besfort Guri</p>
+              <p>FLOSSK</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Brian King" src="images/speakers/brian_king.jpg">
+            </aside>
+            <a href="javascript:alert('Mozillian since 1999. Currently Mozilla Contributor Engagement Manager, Representative and Mentor. Part of Firefox OS Launch team initations Founder &amp;amp; Technical Lead at Briks Software.')">
+              <p>Brian King</p>
+              <p>Mozilla</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Konstantinos Boukovalas" src="images/speakers/konstantinos_boukovalas.jpg">
+            </aside>
+            <a href="javascript:alert('Active member of GNU Greece, supporter of Free Software Foundation Europe and the operational manager for Linux Professional Institute (LPI) Greece. Owner of Onitas Hellas.')">
+              <p>Konstantinos Boukovalas</p>
+              <p>LPI</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Elian Stefa" src="images/speakers/elian_stefa.jpg">
+            </aside>
+            <a href="javascript:alert('Curator, architect and lecturer based in Tirana. Focuses on revitalization of abandoned spaces. Director of Concrete Mushrooms, a non-profit promoting sustainable historical tourism in Albania.')">
+              <p>Elian Stefa</p>
+              <p>Concrete Mushrooms</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Altin Ukshini" src="images/speakers/altin_ukshini.jpg">
+            </aside>
+            <a href="javascript:alert('FLOSS hacktivist and currently President of the Executive board at FLOSSK, Board president at MOSSCon and a Mozilla Representative. Altin works at IPKO Foundation as a Program Assistant where he also manages the tech sides of the projects.')">
+              <p>Altin Ukshini</p>
+              <p>FLOSSK</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Gent Thaçi" src="images/speakers/gent_thaci.jpg">
+            </aside>
+            <a href="javascript:alert('Gent is part of the executive board at FLOSSK. He is a Fedora Project Ambassador and a Mozilla Representative. Gent currently works at IPKO Foundation where he is in charge of BarCamp Prishtina and BarCamp In Your City.')">
+              <p>Gent Thaçi</p>
+              <p>FLOSSK</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Ardian Haxha" src="images/speakers/ardian_haxha.jpg">
+            </aside>
+            <a href="javascript:alert('Python/Django Developer, Active member at FLOSSK (Free Libre Open Source Software Kosova), Fedora Ambassador, Mozilla Rep. Loves to play with data (Scraping/Visualizing).')">
+              <p>Ardian Haxha</p>
+              <p>FLOSSK</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Anda Bufi" src="images/speakers/anda_bufi.jpg">
+            </aside>
+            <a href="javascript:alert('Architecture Student at the Faculty of Architecture and City Planning at the Polytechnic University of Tirana. Anda is part of the team behind the first architecture magazine in Albania “Architectural Element”. Founder of the blog “When you live in Tirana”')">
+              <p>Anda Bufi</p>
+              <p>When U Live In Tirana</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Arianit Dobroshi" src="images/speakers/arianit_dobroshi.jpg">
+            </aside>
+            <a href="javascript:alert('Although he is an aviation lawyer, Arianit has been involved with the Kosovo NGO promoting free software FLOSS Kosova where for a time served as Chairman of the Executive Board; advised IPKO Foundation on Wiki Academy Kosovo; getting involved also in the process of creating the Open Government Partnership action plan in Kosovo.')">
+              <p>Arianit Dobroshi</p>
+              <p>FLOSSK</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Dashamir Hoxha" src="images/speakers/dashamir_hoxha.jpg">
+            </aside>
+            <a href="javascript:alert('Computer Engineer with experience in software engineering, web application development, linux and network configuration/administration, etc. His specialties: Software engineering, analyst/designer, programer, web application developer, linux server administration, network engineering, configuration manager (CVS/SVN admin), documentation writer, team/project leader.')">
+              <p>Dashamir Hoxha</p>
+              <p>FLOSSAL</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Sokol Dollani" src="images/speakers/sokol_dollani.jpg">
+            </aside>
+            <a href="javascript:alert('Passionate about technology, with deep and solid knowledge on Servers, Virtualization, and Information Security and more.  Sokol is the Founder and managing director of several companies from teaching and publishing to high level consultancies and implementation of complex systems.')">
+              <p>Sokol Dollani</p>
+              <p>Krokodili.com</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Rezart Muco" src="images/speakers/rezart_muco.jpg">
+            </aside>
+            <a href="javascript:alert('Managing the cloud infrastructure of Abcom and developing new services in the cloud; Ideated and Implemented the Student Information System of University of Vlora; developed a small linux operating system for openmoko GTA02 devices(the system is written using QT framework).')">
+              <p>Rezart Muco</p>
+              <p>Abcom</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Greta Doci" src="images/speakers/greta_doci.jpg">
+            </aside>
+            <a href="javascript:alert('She studied Information and Communication Technology at Tirana University; born in Elbasan but lives in Tirana, Albania. She is one of the board members @OpenLabs. Coordinator @WikiAkademia Albania. Hacktivist/Open Source/Free Software.')">
+              <p>Greta Doci</p>
+              <p>WikiAkademia</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Tomi Kallanxhi" src="images/speakers/tomi_kallanxhi.jpg">
+            </aside>
+            <a href="javascript:alert('Tomi has more than five years of professional experience in the field of Web Development and Web Marketing. He has founded shpi.al ,the first real estate web portal in Albania, which was one of the winners of the competition for the 3 best business plans, organized by the Hall of Tirana.')">
+              <p>Tomi Kallanxhi</p>
+              <p>Shpi.al</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Billy Zharri" src="images/speakers/billy_zharri.jpg">
+            </aside>
+            <a href="javascript:alert('As a young fan and student of Computer Science, Billy founded AlbanianTech 1 year ago. Key Member at Open Labs, Media and Communication enthusiast and contributor to the albanian Mozilla community. He is also Communications Lead in the Firefox OS Launch team in Albania..')">
+              <p>Billy Zharri</p>
+              <p>AlbanianTech</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Oriola Gjetaj" src="images/speakers/oriola_gjetaj.jpg">
+            </aside>
+            <a href="javascript:alert('Oriola studies business-informatics at Epoka university, third year and has also participated in Microsoft’s competition Imagine Cup, held last year . She is interested in networking issues related to economics such as mechanism design and game theory, routing , java programming, mobile programming.')">
+              <p>Oriola Gjetaj</p>
+              <p>Epoka University</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Gerta Kapllani" src="images/speakers/gerta_kapllani.jpg">
+            </aside>
+            <a href="javascript:alert('She actually studies information system and economics,second year bachelor at the Faculty of Economics, University of Tirana.  She has also participated in various competitions and many trainings in the past..')">
+              <p>Gerta Kapllani</p>
+              <p>Faculty of Economics</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Aldo Ziflaj" src="images/speakers/aldo_ziflaj.jpg">
+            </aside>
+            <a href="javascript:alert('Aldo studies Computer Engineering at the Polytechnic University of Tirana. He has participiated in Google’s competition “Google Code Jam”, Harvard’s CS50x, and with his friend Aleksander Koko they have developed the first Firefox OS application in Albania, ApPiano, which debuted at Mozilla Weekend Tirana 2014.')">
+              <p>Aldo Ziflaj</p>
+              <p>Polytechnic University</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Abi Dodbiba" src="images/speakers/abi_dodbiba.jpg">
+            </aside>
+            <a href="javascript:alert('Born and raised in Tirana, Abi has been living and traveling throughout Europe for the past years. She holds a bachelor degree in International Economics and Management, and a master degree in System Dynamics. She currently resides in the Balkans, dedicating her energy to workers’ rights, but also trying to promote the System Dynamics methodology and its potential applications.')">
+              <p>Abi Dodbiba</p>
+              <p>Polytechnic University</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Aleksander Koko" src="images/speakers/aleksander_koko.jpg">
+            </aside>
+            <a href="javascript:alert('Aleksander is young developer who loves to play with the newest web technologies, and always is the first to hear about the newest web developments. In his free time, he reads about PHP, Firefox OS or experiments with a new language. Currently, his main interests are PHP design patterns, laravel, dart and cloud.')">
+              <p>Aleksander Koko</p>
+              <p>Polytechnic University</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Kristi Progri" src="images/speakers/kristi_progri.jpg">
+            </aside>
+            <a href="javascript:alert('Kristi is one of the first female contributors in the albanian Mozilla community and Open Labs. She is a Firefox Student Ambassador and currently studies International Relations at the European University of Tirana. She has made herself a goal to promote the importance of women in open source technology and communities')">
+              <p>Kristi Progri</p>
+              <p>European University</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Marin Nikolli" src="images/speakers/marin_nikolli.jpg">
+            </aside>
+            <a href="javascript:alert('Marin\'s current occupation is Graphic and Web Designer. He is passionate about philosophy and philosophers of ethics and media. In September of 2013 he founded the first monthly magazine in Albania, Pa Fokus, licesned under a free Creative Commons license')">
+              <p>Marin Nikolli</p>
+              <p>PaFokus Magazine</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Kelvin Çobanaj" src="images/speakers/kelvin_cobanaj.jpg">
+            </aside>
+            <a href="javascript:alert('Kelvin is a 15 years old web and mobile developer, he loves to develop and hack on Firefox OS. Kelvin has graduated from John Hopkins University on Cryptology, also he is an active contributor at Open Labs and Mozilla Albania.')">
+              <p>Kelvin Çobanaj</p>
+              <p>Open Labs</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Elvin Civici" src="images/speakers/elvin_civici.jpg">
+            </aside>
+            <a href="javascript:alert('Marketing and digital-age enthusiast, co-founder of Showtime.al, ocassional volunteer at Open Labs and part-time promoter of Creative Commons')">
+              <p>Elvin Civici</p>
+              <p>Creative Commons</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Florian Tani" src="images/speakers/florian_tani.jpg">
+            </aside>
+            <a href="javascript:alert('He has Bachelor degree in Physics Engineering at Polytechnic University of Tirana now studying Computer Engineering, 2nd year at Metropolitan University of Tirana. He is a Linux Coordinator in Open Labs Albania. His interest are Linux System Administration,Networking, Red Hat, LPI, shell scripiting, Perl,Python')">
+              <p>Florian Tani</p>
+              <p>Polytechnic University</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Orven Bregu" src="images/speakers/orven_bregu.jpg">
+            </aside>
+            <a href="javascript:alert('Orven studies for electronics at Harry T Fultz school. He always want to keep in touch with the latest news from open source tools. He’s working on different projects based on open Source Hardware . He is also addicted to hardware')">
+              <p>Orven Bregu</p>
+              <p>Open Labs</p>
+            </a>
+          </li>
+          <li>
+            <aside class="pack-end">
+              <img alt="Andri Xhitoni" src="images/speakers/andri_xhitoni.jpg">
+            </aside>
+            <a href="javascript:alert('Developer and Co-founder at Fabrika.al.Designer since 1999, Front-end / Back-end developer with the LAMP stack since 2007. Creator of cross-media solutions, including Web, Mobile and Live TV broadcast')">
+              <p>Andri Xhitoni</p>
+              <p>Fabrika.al</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="skin-dark" role="region" id="supporters" data-position="right">
+    <header class="fixed">
+      <a id="btn-supporters-back" href="#"><span class="icon icon-back">back</span></a>
+      <h1>OSCAL <em>Supporters</em></h1>
+    </header>
+
+    <article class="content scrollable header">
+      <h1>Gold Sponsors</h1>
+      <img src="/images/supporters/gold/vodafone.png" alt="Vodafone" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/gold/github.png" alt="GitHub" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/gold/mozilla.png" alt="Mozilla" style="width: 50%; display: block; margin: 15px auto">
+
+      <h1>Sponsors</h1>
+      <img src="images/supporters/sponsor/ogilvy.png" alt="Ogilvy" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/sponsor/lpi.png" alt="LPI" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/sponsor/fedora.png" alt="Fedora" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/sponsor/fsfe.png" alt="FSFE" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/sponsor/host_al.png" alt="Host.al" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/sponsor/farnell.png" alt="Farnell Electronics" style="width: 50%; display: block; margin: 15px auto">
+
+      <h1>Supporters </h1>
+      <img src="images/supporters/supporters/mmsr.png" alt="Ministria e Rinisë dhe Mirëqenies Sociale" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/uit.png" alt="Universiteti i Tiranës" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/unique.png" alt="Unique Junior Enterprise" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/digjitale.png" alt="Digjitale" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/shqiperia_com.png" alt="Shqiperia.com" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/pcworld.png" alt="PC World" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/albaniatech.png" alt="AlbaniaTech" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/krokodili.png" alt="Krokodili" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/tiranaxxl.png" alt="Tirana XXL" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/radio_travel.png" alt="Radio Travel" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/showtime.png" alt="Showtime" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/osarena.png" alt="OS Arena" style="width: 50%; display: block; margin: 15px auto">
+      <img src="images/supporters/supporters/gazeta_dita.png" alt="Gazeta Dita" style="width: 50%; display: block; margin: 15px auto">
+    </article>
+  </section>
+
+  <script type="text/javascript" defer src="js/status.js"></script>
+  <script type="text/javascript" defer src="js/seekbars.js"></script>
+  <script type="text/javascript" defer src="js/app.js"></script>
+</body>
+</html>
